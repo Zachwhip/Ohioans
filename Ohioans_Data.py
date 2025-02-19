@@ -23,7 +23,7 @@ def process_new_file(file_path):
         
         # Print the DataFrame for debugging
         print("DataFrame loaded successfully:")
-        print(df.head())
+        #print(df.head())
 
         # Ensure the 'TID' column exists
         if 'TID' not in df.columns:
@@ -34,39 +34,36 @@ def process_new_file(file_path):
         team_1_tid = '1111BBBB'
         team_2_tid = '2222BBBB'
 
+        # Seperate teams
         filtered_team_1 = df['EPC'].str.contains(team_1_tid, case=False, na=False)
         filtered_team_2 = df['EPC'].str.contains(team_2_tid, case=False, na=False)
 
-        unique_team_1 = df[filtered_team_1]['EPC'].drop_duplicates()
-        unique_team_2 = df[filtered_team_2]['EPC'].drop_duplicates()
+        # Remove duplicate entries
+        unique_team_1 = df[filtered_team_1].drop_duplicates(subset=['EPC'])
+        unique_team_2 = df[filtered_team_2].drop_duplicates(subset=['EPC'])
 
-        team_1_board_count = unique_team_1.nunique()
-        team_2_board_count = unique_team_2.nunique()
+        # Get number of bags in hole
+        team_1_hole_count = (unique_team_1['RSSI'] > -60).sum()
+        team_2_hole_count = (unique_team_2['RSSI'] > -60).sum()
 
+        # Get number of bags on board outside of hole
+        team_1_board_count = len(unique_team_1.index) - team_1_hole_count
+        team_2_board_count = len(unique_team_2.index) - team_2_hole_count
 
-
-        #FOR TESTING. REMOVE AND IMPLEMENT CODE TO CHECK IF BAG IS IN HOLE LATER
-        team_1_round_hole_score = 0
-        team_2_round_hole_score = 0
-
-        # COMPLETE WHEN THRESHOLD IS FOUND.
-        # if(unique_team_1_strength > threshold)
-        #    team_1_round_hole_score = 3 * unique_team_1.nunique() 
-        #    team_1_board_count -= 1
-        # if(unique_team_2_strength > threshold)
-        #    team_2_round_hole_score = 3 * unique_team_1.nunique()
-        #    team_2_board_count -= 1
+        # Calculate hole points
+        team_1_round_hole_score = (team_1_hole_count * 3)
+        team_2_round_hole_score = (team_2_hole_count * 3)
 
         team_1_round_score = 0
         team_2_round_score = 0
 
         print(f"Team 1 Board Count = {team_1_board_count}")
+        print(f"Team 1 Hole Count = {team_1_hole_count}")
         print(f"Team 2 Board Count = {team_2_board_count}")
+        print(f"Team 2 hole Count = {team_2_hole_count}")
 
         # Scoring logic based on the counts of TID
-
         if team_1_board_count + team_1_round_hole_score > team_2_board_count + team_2_round_hole_score:
-            #ACCESS THESE AS GLOBAL VARIABLES
             team_1_round_score = (team_1_board_count + team_1_round_hole_score) - (team_2_board_count + team_2_round_hole_score)
             team_2_round_score = team_2_round_score
         elif team_2_board_count + team_2_round_hole_score > team_1_board_count + team_2_round_hole_score:
