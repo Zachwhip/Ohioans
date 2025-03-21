@@ -29,8 +29,9 @@ class NewFileHandler(FileSystemEventHandler):
 
 def File_Find():
     global monitoring
-    directory_to_watch = "C:/Users/dylan/Documents/ItemTest/TagLogs"
-    
+    # directory_to_watch = "C:/Users/dylan/Documents/ItemTest/TagLogs"
+    directory_to_watch = "C:/Users/zachw/Documents/ItemTest/TagLogs"
+
     print("Monitoring started...")
 
     # Set up the observer

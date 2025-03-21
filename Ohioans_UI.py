@@ -15,16 +15,20 @@ def run(start_callback, stop_callback):
     root.minsize(398, 628)
 
     # Open the PNG image
-    logo = Image.open("C:/Users/dylan/Documents/Ohioans/UCLogo.png")
+    # logo = Image.open("C:/Users/dylan/Documents/Ohioans/UCLogo.png")
+    logo = Image.open("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.png")
 
     # Save the image as .ico
-    logo.save("C:/Users/dylan/Documents/Ohioans/UCLogo.ico")
+    # logo.save("C:/Users/dylan/Documents/Ohioans/UCLogo.ico")
+    logo.save("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.ico")
 
     # Set the window icon (using .ico format)
-    root.iconbitmap("C:/Users/dylan/Documents/Ohioans/UCLogo.ico")  # Path to the .ico file
+    # root.iconbitmap("C:/Users/dylan/Documents/Ohioans/UCLogo.ico")  # Path to the .ico file
+    root.iconbitmap("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.ico")  # Path to the .ico file
 
     # Load the UC Logo
-    logo_image = Image.open("C:/Users/dylan/Documents/Ohioans/UCLogo.png")
+    # logo_image = Image.open("C:/Users/dylan/Documents/Ohioans/UCLogo.png")
+    logo_image = Image.open("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.png")
     logo_photo = ImageTk.PhotoImage(logo_image)
 
     # Create a Label widget to hold the image and set it as the background
@@ -83,6 +87,32 @@ def run(start_callback, stop_callback):
         # Update the score labels for both teams
         team_red_score_label.config(text=f"Team Red: {team_red_score}")
         team_blue_score_label.config(text=f"Team Blue: {team_blue_score}")
+
+    def increase_red_score():
+        Ohioans_File.team_1_score += 1
+        update_team_scores()
+
+    def decrease_red_score():
+        Ohioans_File.team_1_score = max(0, Ohioans_File.team_1_score - 1)
+        update_team_scores()
+
+    def increase_blue_score():
+        Ohioans_File.team_2_score += 1
+        update_team_scores()
+
+    def decrease_blue_score():
+        Ohioans_File.team_2_score = max(0, Ohioans_File.team_2_score - 1)
+        update_team_scores()
+
+    red_increase_button = tk.Button(root, text="+", font=("Helvetica", 14), fg="white", bg="red", command=increase_red_score)
+    red_decrease_button = tk.Button(root, text="-", font=("Helvetica", 14), fg="white", bg="red", command=decrease_red_score)
+    blue_increase_button = tk.Button(root, text="+", font=("Helvetica", 14), fg="white", bg="blue", command=increase_blue_score)
+    blue_decrease_button = tk.Button(root, text="-", font=("Helvetica", 14), fg="white", bg="blue", command=decrease_blue_score)
+    
+    red_increase_button.place(relx=0.3, rely=0.82, anchor="center")
+    red_decrease_button.place(relx=0.3, rely=0.88, anchor="center")
+    blue_increase_button.place(relx=0.7, rely=0.82, anchor="center")
+    blue_decrease_button.place(relx=0.7, rely=0.88, anchor="center")
 
     # Update the status when the program starts/stops
     def update_status(is_monitoring):
