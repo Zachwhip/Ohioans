@@ -7,9 +7,9 @@
 ###################################################
 
 import threading
-import time
 import Ohioans_UI
 import Ohioans_File
+import Ohioans_IR
 
 def start_program():
     print("Program started")
@@ -22,10 +22,16 @@ def start_program():
     file_monitor_thread.daemon = True
     file_monitor_thread.start()
 
+    # Start IR beam monitor
+    ir_monitor_thread = threading.Thread(target=Ohioans_IR.ir_beam_start)
+    ir_monitor_thread.daemon = True
+    ir_monitor_thread.start()
+
 def stop_program():
     print("Program stopped")
     # Signal the monitoring thread to stop
     Ohioans_File.stop_monitoring()
+    Ohioans_IR.stop_monitoring()
     Ohioans_File.team_1_score = 0
     Ohioans_File.team_2_score = 0
 

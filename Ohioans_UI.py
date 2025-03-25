@@ -16,19 +16,19 @@ def run(start_callback, stop_callback):
 
     # Open the PNG image
     # logo = Image.open("C:/Users/dylan/Documents/Ohioans/UCLogo.png")
-    logo = Image.open("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.png")
+    #logo = Image.open("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.png")
 
     # Save the image as .ico
     # logo.save("C:/Users/dylan/Documents/Ohioans/UCLogo.ico")
-    logo.save("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.ico")
+    #logo.save("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.ico")
 
     # Set the window icon (using .ico format)
     # root.iconbitmap("C:/Users/dylan/Documents/Ohioans/UCLogo.ico")  # Path to the .ico file
-    root.iconbitmap("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.ico")  # Path to the .ico file
+    root.iconbitmap("C:/Users/zachw/Documents/GitHub/Ohioans/UCLogo.ico")  # Path to the .ico file
 
     # Load the UC Logo
     # logo_image = Image.open("C:/Users/dylan/Documents/Ohioans/UCLogo.png")
-    logo_image = Image.open("C:/Users/zachw/Documents/SeniorDesign/Ohioans/UCLogo.png")
+    logo_image = Image.open("C:/Users/zachw/Documents/GitHub/Ohioans/UCLogo.png")
     logo_photo = ImageTk.PhotoImage(logo_image)
 
     # Create a Label widget to hold the image and set it as the background

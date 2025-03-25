@@ -1,12 +1,9 @@
 # Ohioans_Score.py
 
 import Ohioans_File
-import Ohioans_UI
 
 class GameScores:
     def __init__(self):
-        #self.team_1_score = 0
-        #self.team_2_score = 0
         self.game_started = False   # Track whether the game has started
 
     def start_game(self):
@@ -24,12 +21,6 @@ class GameScores:
             print("Game is already stopped.")
 
     def update_scores(self, team_1_round_score, team_2_round_score):
-        # Update total scores with the new round scores
-        #self.team_1_score += team_1_round_score
-        #self.team_2_score += team_2_round_score
-        #print(f"Updated Scores - Team 1: {self.team_1_score}, Team 2: {self.team_2_score}")
-        # Ohioans_File.team_1_score 
-        # Ohioans_File.team_2_score
         Ohioans_File.team_1_score += team_1_round_score
         Ohioans_File.team_2_score += team_2_round_score
         print(f"Updated Scores - Team 1: {Ohioans_File.team_1_score}, Team 2: {Ohioans_File.team_2_score}")

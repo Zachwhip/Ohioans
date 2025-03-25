@@ -1,6 +1,5 @@
 # Ohioans_File.py
 
-import os
 import time
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -17,9 +16,6 @@ team_2_score = 0
 class NewFileHandler(FileSystemEventHandler):
     def __init__(self, directory):
         self.directory = directory
-        #move these somehwhere else. make sure theyre global variables
-        #self.team_1_round_score = 0
-        #self.team_2_round_score = 0
     def on_created(self, event):
         # This method is called when a new file is created
         if not event.is_directory:  # Only handle files (not directories)
@@ -30,7 +26,7 @@ class NewFileHandler(FileSystemEventHandler):
 def File_Find():
     global monitoring
     # directory_to_watch = "C:/Users/dylan/Documents/ItemTest/TagLogs"
-    directory_to_watch = "C:/Users/zachw/Documents/ItemTest/TagLogs"
+    directory_to_watch = "C:/Users/zachw/Documents/ItemTest/TagLogs/Read"
 
     print("Monitoring started...")
 
